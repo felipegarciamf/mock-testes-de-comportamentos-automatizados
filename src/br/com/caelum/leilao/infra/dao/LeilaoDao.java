@@ -14,10 +14,15 @@ import java.util.List;
 import br.com.caelum.leilao.dominio.Lance;
 import br.com.caelum.leilao.dominio.Leilao;
 import br.com.caelum.leilao.dominio.Usuario;
+import br.com.caelum.leilao.service.RepositorioLeiloes;
 
-public class LeilaoDao {
+public class LeilaoDao implements RepositorioLeiloes {
 
 	private Connection conexao;
+	
+	public String fuck() {
+		return "olA";
+	}
 
 	public LeilaoDao() {
 		try {
@@ -42,7 +47,7 @@ public class LeilaoDao {
 			ps.setDate(2, new java.sql.Date(leilao.getData().getTimeInMillis()));
 			ps.setBoolean(3, leilao.isEncerrado());
 			
-			ps.execute();
+			ps.execute(); 
 			
 			ResultSet generatedKeys = ps.getGeneratedKeys();
 	        if (generatedKeys.next()) {
@@ -77,6 +82,7 @@ public class LeilaoDao {
 		return porEncerrado(false);
 	}
 	
+	
 	private List<Leilao> porEncerrado(boolean status) {
 		try {
 			String sql = "SELECT * FROM LEILAO WHERE ENCERRADO = " + status + ";";
@@ -109,10 +115,16 @@ public class LeilaoDao {
 			rs.close();
 			ps.close();
 			
+			
 			return leiloes;
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
+	}
+	
+	
+	public String teste() {
+		return "testeasdasd";
 	}
 
 	public void atualiza(Leilao leilao) {
