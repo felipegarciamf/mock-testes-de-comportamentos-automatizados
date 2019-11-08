@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.caelum.leilao.dominio.Leilao;
 
-public interface RepositorioLeiloes {
+public interface RepositorioDeLeiloes {
 
 	void salva(Leilao leilao);
 	List<Leilao> encerrados();

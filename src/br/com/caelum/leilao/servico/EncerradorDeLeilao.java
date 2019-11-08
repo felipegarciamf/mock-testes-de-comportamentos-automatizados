@@ -7,15 +7,15 @@ import br.com.caelum.leilao.dominio.Leilao;
 import br.com.caelum.leilao.infra.dao.LeilaoDao;
 import br.com.caelum.leilao.infra.dao.LeilaoDaoFalso;
 import br.com.caelum.leilao.infra.email.EnviadorDeEmail;
-import br.com.caelum.leilao.service.RepositorioLeiloes;
+import br.com.caelum.leilao.service.RepositorioDeLeiloes;
 
 public class EncerradorDeLeilao {
 
 	 private int total = 0;
-	    private final RepositorioLeiloes dao;
+	    private final RepositorioDeLeiloes dao;
 	    private final EnviadorDeEmail carteiro;
 
-	    public EncerradorDeLeilao(RepositorioLeiloes dao, EnviadorDeEmail carteiro ) {
+	    public EncerradorDeLeilao(RepositorioDeLeiloes dao, EnviadorDeEmail carteiro ) {
 	        this.dao = dao;
 	        this.carteiro = carteiro;
 	    }

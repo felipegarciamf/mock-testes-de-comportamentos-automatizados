@@ -22,7 +22,7 @@ import br.com.caelum.leilao.builder.CriadorDeLeilao;
 import br.com.caelum.leilao.dominio.Leilao;
 import br.com.caelum.leilao.infra.dao.LeilaoDao;
 import br.com.caelum.leilao.infra.email.EnviadorDeEmail;
-import br.com.caelum.leilao.service.RepositorioLeiloes;
+import br.com.caelum.leilao.service.RepositorioDeLeiloes;
 
 public class EncerradorDeLeilaoTest {
 	
@@ -34,7 +34,7 @@ public class EncerradorDeLeilaoTest {
 		Leilao leilao1 = new CriadorDeLeilao().para("TV ANTIGA").naData(antiga).constroi();
 		Leilao leilao2 = new CriadorDeLeilao().para("Geladeira").naData(antiga).constroi();
 		
-		RepositorioLeiloes daofalso = mock(LeilaoDao.class);
+		RepositorioDeLeiloes daofalso = mock(LeilaoDao.class);
 		List<Leilao> leiloesAntigos = Arrays.asList(leilao1, leilao2);
 	
 		
@@ -59,7 +59,7 @@ public class EncerradorDeLeilaoTest {
 		Leilao leilao1 = new CriadorDeLeilao().naData(antiga).constroi();
 		Leilao leilao2 = new CriadorDeLeilao().naData(antiga).constroi();
 		
-		RepositorioLeiloes daoFalso = mock(RepositorioLeiloes.class);
+		RepositorioDeLeiloes daoFalso = mock(RepositorioDeLeiloes.class);
 		List<Leilao> leiloesAntigos = Arrays.asList(leilao1, leilao2);
 		
 		when(daoFalso.correntes()).thenReturn(leiloesAntigos);
@@ -80,7 +80,7 @@ public class EncerradorDeLeilaoTest {
 		Calendar antiga = Calendar.getInstance();
 		antiga.set(1999, 9, 18);
 		
-		RepositorioLeiloes daoFalso = mock(RepositorioLeiloes.class);
+		RepositorioDeLeiloes daoFalso = mock(RepositorioDeLeiloes.class);
 		when(daoFalso.correntes()).thenReturn(new ArrayList<Leilao>());
 		EnviadorDeEmail carteiroFalso = mock(EnviadorDeEmail.class);
 		EncerradorDeLeilao encerradorDeLeilao = new EncerradorDeLeilao(daoFalso, carteiroFalso);
@@ -105,7 +105,7 @@ public class EncerradorDeLeilaoTest {
 		antiga.set(1999, 9, 18);
 		
 		Leilao leilao = new CriadorDeLeilao().para("TV DE PLASMA").naData(antiga).constroi();
-		RepositorioLeiloes daoFalso = mock(LeilaoDao.class);
+		RepositorioDeLeiloes daoFalso = mock(LeilaoDao.class);
 		
 		when(daoFalso.correntes()).thenReturn(Arrays.asList(leilao));
 		EnviadorDeEmail carteiroFalso = mock(EnviadorDeEmail.class);
@@ -128,7 +128,7 @@ public class EncerradorDeLeilaoTest {
 		Leilao leilao2 = new CriadorDeLeilao().para("GELADEIRA").naData(antiga).constroi();
 		
 		
-		RepositorioLeiloes daoFalso = mock(RepositorioLeiloes.class);
+		RepositorioDeLeiloes daoFalso = mock(RepositorioDeLeiloes.class);
 		EnviadorDeEmail carteiroFalso = mock(EnviadorDeEmail.class);
 		
 		when(daoFalso.correntes()).thenReturn(Arrays.asList(leilao1, leilao2));
