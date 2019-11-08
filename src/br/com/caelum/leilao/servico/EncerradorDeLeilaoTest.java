@@ -9,6 +9,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.doThrow;
+import static org.mockito.Matchers.any;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -131,15 +132,15 @@ public class EncerradorDeLeilaoTest {
 		EnviadorDeEmail carteiroFalso = mock(EnviadorDeEmail.class);
 		
 		when(daoFalso.correntes()).thenReturn(Arrays.asList(leilao1, leilao2));
-		doThrow(new RuntimeException()).when(daoFalso).atualiza(leilao1);
+		doThrow(new RuntimeException()).when(daoFalso).atualiza(any(Leilao.class));
+
 		
 		EncerradorDeLeilao encerrador = new EncerradorDeLeilao(daoFalso, carteiroFalso);
 		encerrador.encerra();
 		
-		verify(daoFalso).atualiza(leilao2);
-		verify(carteiroFalso).envia(leilao2);
+		verify(carteiroFalso, never()).envia(any(Leilao.class));
 		
-		verify(carteiroFalso, times(0)).envia(leilao1);
+
 		
 	}
 
